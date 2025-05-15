@@ -1,28 +1,61 @@
-import { View, StyleSheet, ScrollView } from 'react-native';
-import ParkingMap from '@/components/ParkingMap';
-import ParkingSpotCard from '@/components/ParkingSportCard';
-import { mockParkingSpots } from '../data/mockData';
+import { View, Text, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
+import { useRouter } from 'expo-router';
 
-export default function HomeScreen() {
+export default function Onboarding() {
+  const router = useRouter();
+
   return (
-    <View style={styles.container}>
-      <ParkingMap spots={mockParkingSpots} />
-      <ScrollView style={styles.spotsContainer}>
-        {mockParkingSpots.map((spot) => (
-          <ParkingSpotCard key={spot.id} spot={spot} />
-        ))}
-      </ScrollView>
-    </View>
+    <ImageBackground
+      source={{ uri: 'https://source.unsplash.com/800x1200/?cars,parking' }}
+      style={styles.background}
+      resizeMode="cover"
+    >
+      <View style={styles.overlay} />
+      <View style={styles.content}>
+        <Text style={styles.title}>PMS</Text>
+        <Text style={styles.subtitle}>Parking Management System</Text>
+
+        <TouchableOpacity style={styles.button} onPress={() => router.push('/(auth)/login')}>
+          <Text style={styles.buttonText}>GET STARTED</Text>
+        </TouchableOpacity>
+      </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  background: {
     flex: 1,
-    backgroundColor: '#F2F2F7',
+    justifyContent: 'flex-end',
   },
-  spotsContainer: {
-    flex: 1,
-    padding: 16,
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+  },
+  content: {
+    padding: 32,
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 40,
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  subtitle: {
+    fontSize: 18,
+    color: 'white',
+    marginVertical: 10,
+  },
+  button: {
+    backgroundColor: '#FF6B00',
+    paddingVertical: 14,
+    paddingHorizontal: 40,
+    borderRadius: 30,
+    marginTop: 24,
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 16,
   },
 });
