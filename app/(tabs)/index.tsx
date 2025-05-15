@@ -6,18 +6,18 @@ export default function Onboarding() {
 
   return (
     <ImageBackground
-      source={{ uri: 'https://source.unsplash.com/800x1200/?cars,parking' }}
+      source={require('../../assets/images/index_car.jpg')}
       style={styles.background}
       resizeMode="cover"
     >
       <View style={styles.overlay} />
       <View style={styles.content}>
-        <Text style={styles.title}>PMS</Text>
-        <Text style={styles.subtitle}>Parking Management System</Text>
+      <Text style={styles.title}>PMS</Text>
+      <Text style={styles.subtitle}>Parking Management System</Text>
 
-        <TouchableOpacity style={styles.button} onPress={() => router.push('/(auth)/login')}>
-          <Text style={styles.buttonText}>GET STARTED</Text>
-        </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => router.push('/(auth)/login')}>
+        <Text style={styles.buttonText}>GET STARTED</Text>
+      </TouchableOpacity>
       </View>
     </ImageBackground>
   );
